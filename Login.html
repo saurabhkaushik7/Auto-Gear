@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="main.css">
+    <script>
+
+       
+function clearErrors(){
+    errors = document.getElementsByClassName('error');
+    for(let item of errors)
+    {
+        item.innerHTML = ""
+        
+    }
+}
+
+function validation(){
+    var returnval= true;
+    clearErrors()
+
+    var uname= document.getElementById('user').value;
+    var pass= document.getElementById('pass').value;
+    var validPass = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$/;
+
+
+
+    if(uname.length<8)
+    {
+        
+        document.getElementsByClassName("error")[0].innerHTML= "*Username should be atleast 8 characters long"
+        
+        returnval = false;
+        
+    }
+    
+    if(!pass.match(validPass))
+    {
+        returnval= false
+        document.getElementsByClassName("error")[1].innerHTML= "*Password should contain atleast one lowercase,one Uppercase,numeric value,special character,and length should be between 5-15 charaters"
+    }
+
+   return returnval;
+    
+    
+}
+    </script>
+</head>
+
+<body>
+    <div class="container">
+        <h1> Login </h1>
+        <form action="index.html" onsubmit="return validation()">
+            <input type="text" placeholder="Username" name=" user" id="user"><span class="error"></span>
+            <input type="password" placeholder="password" name="pass" id="pass"><span class="error"></span>
+            <div class="recover">
+                <a href="#">Forgot Password?</a>
+                <input type="submit" value="Login" class="sub">
+            </div>
+        </form>
+
+
+        <div class="register">
+            Not have an account? <a href="./signup.html">
+                Register Now
+            </a>
+        </div>
+    </div>
+</body>
+
+</html>
